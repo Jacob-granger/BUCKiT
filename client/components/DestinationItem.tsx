@@ -5,6 +5,7 @@ import {
   FormControl,
   FormLabel,
   HStack,
+  Heading,
   Input,
   Text,
   VStack,
@@ -62,12 +63,15 @@ export default function DestinationItem(props: Props) {
 
   return !edit ? (
     <>
-      <Card bg="#C95B0c" width="50%">
+      <Card bg="#0147AB" width="50%">
         <CardBody>
           <VStack spacing="20px">
-            <Text color="white" fontSize="1.5rem">
+            <Heading as="h3" size="md" color="white">
               {props.location}: {props.duration_days} days
-            </Text>
+            </Heading>
+            {/* <Text color="white" fontSize="1.5rem">
+              
+            </Text> */}
             <HStack justifyContent="space-between" width="100%">
               <Button
                 as="a"
@@ -94,32 +98,36 @@ export default function DestinationItem(props: Props) {
     </>
   ) : (
     <>
-      <Card bg="#C95B0c" width="50%">
+      <Card bg="#0147AB" width="50%">
         <CardBody>
           <VStack spacing="20px">
             <form onSubmit={handleSave} aria-label="Edit destination form">
               {updateDestMutation.isError && (
                 <h3>Whoops something went wrong trying to update this entry</h3>
               )}
-              <FormControl>
-                <FormLabel htmlFor="location">Destination:</FormLabel>
+              <FormControl color="white">
+                <FormLabel htmlFor={editForm.location}>Destination:</FormLabel>
                 <Input
+                  id={editForm.location}
                   type="text"
                   name="location"
                   onChange={handleEditChange}
                   value={editForm.location}
                 />
               </FormControl>
-              <FormControl mt={4}>
-                <FormLabel htmlFor="duration_days">Duration (days):</FormLabel>
+              <FormControl mt={4} color="white">
+                <FormLabel htmlFor={`${editForm.location}-days`}>
+                  Duration (days):
+                </FormLabel>
                 <Input
+                  id={`${editForm.location}-days`}
                   type="number"
                   name="duration_days"
                   onChange={handleEditChange}
                   value={editForm.duration_days}
                 />
               </FormControl>
-              <Button fontSize={10} width="25%" type="submit">
+              <Button fontSize={10} width="25%" type="submit" mt="10px">
                 Save
               </Button>
             </form>

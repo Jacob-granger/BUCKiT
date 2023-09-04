@@ -1,5 +1,5 @@
-import { Center } from '@chakra-ui/react'
-import { Outlet } from 'react-router-dom'
+import { Center, Heading, Text } from '@chakra-ui/react'
+import { Link, Outlet } from 'react-router-dom'
 import { ChakraProvider } from '@chakra-ui/react'
 
 function App() {
@@ -8,7 +8,9 @@ function App() {
       <ChakraProvider>
         <Center mb={50}>
           <header className="header">
-            <h1>Bucket List</h1>
+            <Heading as="h1" size="xl">
+              <Link to="/">Bucket List</Link>
+            </Heading>
           </header>
         </Center>
 

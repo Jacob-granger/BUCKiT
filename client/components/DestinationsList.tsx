@@ -2,7 +2,7 @@ import { useQuery } from '@tanstack/react-query'
 import { getDestinations } from '../apis/destinations'
 import { Destination } from '../../models/destinations'
 import DestinationItem from './DestinationItem'
-import { Center, VStack } from '@chakra-ui/react'
+import { Center, Heading, VStack } from '@chakra-ui/react'
 import DestinationForm from './DestinationForm'
 
 export default function DestinationsList() {
@@ -27,9 +27,9 @@ export default function DestinationsList() {
   return (
     <>
       <Center mb={10}>
-        <h2>
-          Here&apos;s your current bucket list of destinations to travel to:
-        </h2>
+        <Heading as="h2" size="md">
+          Here&apos;s your list of destinations to travel to
+        </Heading>
       </Center>
 
       <Center>

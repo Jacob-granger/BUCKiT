@@ -2,7 +2,14 @@ import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { addDestination } from '../apis/destinations'
 import { Destination, DestinationData } from '../../models/destinations'
 import { useState } from 'react'
-import { Box, Button, FormControl, FormLabel, Input } from '@chakra-ui/react'
+import {
+  Box,
+  Button,
+  Flex,
+  FormControl,
+  FormLabel,
+  Input,
+} from '@chakra-ui/react'
 
 const initialFormData = {
   location: '',
@@ -46,24 +53,7 @@ export default function DestinationForm() {
 
   return (
     <>
-      {/* <form onSubmit={handleSubmit} aria-label="Add Destination From">
-        <label htmlFor="location">Destination:</label>
-        <input
-          id="location"
-          name="location"
-          onChange={handleChange}
-          value={form.location}
-        />
-        <label htmlFor="duration">Duration:</label>
-        <input
-          id="duration_days"
-          name="duration_days"
-          onChange={handleChange}
-          value={form.duration_days}
-        />
-        <button>Submit</button>
-      </form> */}
-      <Box p={4} maxWidth="400px" mx="auto" mt={8}>
+      <Box p={4} maxWidth="400px" mx="auto">
         <form onSubmit={handleSubmit} aria-label="Add Destination Form">
           {destMutation.isError && (
             <h3>
@@ -71,29 +61,31 @@ export default function DestinationForm() {
               bucket list
             </h3>
           )}
-          <FormControl>
-            <FormLabel htmlFor="location">Destination:</FormLabel>
-            <Input
-              type="text"
-              id="location"
-              name="location"
-              onChange={handleChange}
-              value={form.location}
-            />
-          </FormControl>
-          <FormControl mt={4}>
-            <FormLabel htmlFor="duration_days">Duration (days):</FormLabel>
-            <Input
-              type="number"
-              id="duration_days"
-              name="duration_days"
-              onChange={handleChange}
-              value={form.duration_days}
-            />
-          </FormControl>
-          <Button mt={4} colorScheme="teal" type="submit">
-            Submit
-          </Button>
+          <Flex>
+            <FormControl mr={4}>
+              <FormLabel htmlFor="location">Destination:</FormLabel>
+              <Input
+                type="text"
+                id="location"
+                name="location"
+                onChange={handleChange}
+                value={form.location}
+              />
+            </FormControl>
+            <FormControl mr={4}>
+              <FormLabel htmlFor="duration_days">Duration (days):</FormLabel>
+              <Input
+                id="duration_days"
+                type="number"
+                name="duration_days"
+                onChange={handleChange}
+                value={form.duration_days}
+              />
+            </FormControl>
+            <Button mt={30} bg="green" color="white" type="submit">
+              Add
+            </Button>
+          </Flex>
         </form>
       </Box>
     </>
