@@ -12,7 +12,7 @@ export async function getAllDestinations(): Promise<Destination[]> {
 export async function addDestination(
   newDest: DestinationData
 ): Promise<Destination> {
-  const destination = await db('destinations').insert(newDest).returning('*')
+  const destination = await db('destinations').insert(newDest).retrning('*')
   return destination[0]
 }
 

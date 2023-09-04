@@ -65,6 +65,12 @@ export default function DestinationForm() {
       </form> */}
       <Box p={4} maxWidth="400px" mx="auto" mt={8}>
         <form onSubmit={handleSubmit} aria-label="Add Destination Form">
+          {destMutation.isError && (
+            <h3>
+              Whoops Something went wrong while adding a new destination to you
+              bucket list
+            </h3>
+          )}
           <FormControl>
             <FormLabel htmlFor="location">Destination:</FormLabel>
             <Input

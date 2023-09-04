@@ -89,38 +89,62 @@ describe('Adding destinations', () => {
     expect(addDestination.isDone()).toBe(true)
   })
 
-  // const newScreen = renderRoute('/')
+  it('Handles errors', async () => {
+    const initialLoadScope = nock('http://localhost')
+      .get('/api/v1/destinations')
+      .reply(200, [
+        {
+          id: 1,
+          location: 'Bali',
+          duration_days: 5,
+        },
+        {
+          id: 2,
+          location: 'India',
+          duration_days: 7,
+        },
+        {
+          id: 3,
+          location: 'Vietnam',
+          duration_days: 5,
+        },
+      ])
 
-  // await waitFor(() => {
-  //   expect(newScreen.queryByLabelText('Loading...')).not.toBeInTheDocument()
-  // })
+    const { user, ...screen } = renderRoute('/')
 
-  // const pokemon = newScreen.getByText(/Pikachu/)
+    await waitFor(() => {
+      expect(screen.queryByText(/Loading/)).not.toBeInTheDocument()
+    })
 
-  // const addedPokemon = nock('http://localhost')
-  //   .get('/api/v1/pokemon')q
-  //   .reply(200, [
-  //     {
-  //       id: 4,
-  //       name: 'Jacob',
-  //     },
-  //     {
-  //       id: 5,
-  //       name: 'Charmeleon',
-  //     },
-  //     {
-  //       id: 6,
-  //       name: 'Charizard',
-  //     },
-  //     {
-  //       id: 154,
-  //       name: 'Pikachu',
-  //     },
-  //   ])
-  // const newScreen = renderRoute('/')
+    expect(initialLoadScope.isDone()).toBe(true)
 
-  // expect(addedPokemon.isDone()).toBe(true)
+    const form = screen.getByRole('form')
+    const locationField = within(form).getByLabelText('Destination:')
+    const durationField = within(form).getByLabelText('Duration:')
+    const submit = within(form).getByRole('button')
 
-  // console.log(pokemon)
-  // expect(pokemon).toBeInTheDocument()
+    const addDestination = nock('http://localhost')
+      .post('/api/v1/destinations', {
+        location: 'Cambodia',
+        duration_days: '6',
+      })
+      .reply(500)
+
+    await user.type(locationField, 'Cambodia')
+    await user.type(durationField, '6')
+    await user.click(submit)
+
+    await waitFor(() => {
+      expect(
+        screen.queryByText(/Adding your new destination/)
+      ).not.toBeInTheDocument()
+    })
+
+    const errorMessage = screen.getByText(
+      'Whoops Something went wrong while adding a new destination to you bucket list'
+    )
+
+    expect(errorMessage).toBeVisible()
+    expect(addDestination.isDone()).toBe(true)
+  })
 })
