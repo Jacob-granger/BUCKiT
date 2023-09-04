@@ -67,7 +67,7 @@ export default function DestinationForm() {
         <form onSubmit={handleSubmit} aria-label="Add Destination Form">
           {destMutation.isError && (
             <h3>
-              Whoops Something went wrong while adding a new destination to you
+              Whoops something went wrong while adding a new destination to you
               bucket list
             </h3>
           )}
@@ -82,7 +82,7 @@ export default function DestinationForm() {
             />
           </FormControl>
           <FormControl mt={4}>
-            <FormLabel htmlFor="duration_days">Duration:</FormLabel>
+            <FormLabel htmlFor="duration_days">Duration (days):</FormLabel>
             <Input
               type="number"
               id="duration_days"

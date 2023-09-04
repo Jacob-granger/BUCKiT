@@ -6,7 +6,7 @@ This repo is designed to provide space to code a fullstack app. It contains node
 
 ### 0. Cloning and installation
 
-- [ ] Clone this repo, navigate to it, install packages, and start the server with `npm run dev`
+- [x] Clone this repo, navigate to it, install packages, and start the server with `npm run dev`
   <details style="padding-left: 2em">
     <summary>Tip</summary>
 
@@ -31,7 +31,7 @@ This repo is designed to provide space to code a fullstack app. It contains node
 
 ### 1. Choosing your data set
 
-- [ ] First, decide what you would like to keep a collection of. This could be a repo for keeping track of movies, books, gifs, cars, rocks, anything you fancy, but keep it simple!
+- [x] First, decide what you would like to keep a collection of. This could be a repo for keeping track of movies, books, gifs, cars, rocks, anything you fancy, but keep it simple!
   <details style="padding-left: 2em">
     <summary>More about your collection</summary>
 
@@ -48,31 +48,31 @@ Our first job is getting something showing on the front end from our database. H
 
 ### 2. Building the database
 
-- [ ] Design a database to store a list of your things (e.g. books)
-- [ ] Build the migrations and seed data
+- [x] Design a database to store a list of your things (e.g. books)
+- [x] Build the migrations and seed data
 
 ### 3. Building the API
-- [ ] Build an API (back end route) to get the information from your database
-- [ ] Test your API with Insomnia
+- [x] Build an API (back end route) to get the information from your database
+- [x] Test your API with Insomnia
 
 ## Front end
 
 ### 4. Setting the stage
-- [ ] Build a React component with static html
+- [x] Build a React component with static html
 
 ### 5. Building the API client
-- [ ] Build an API client in the front end to request the information from your routes
+- [x] Build an API client in the front end to request the information from your routes
 
 ### 6. Querying Data 
-- [ ] Write a query with the `useQuery` hook to fetch the collection data from the API
-- [ ] Display the collection data you queried in a component (you may want to create a new component for this)
+- [x] Write a query with the `useQuery` hook to fetch the collection data from the API
+- [x] Display the collection data you queried in a component (you may want to create a new component for this)
 
 ### 7. Create Data
-- [ ] (Optional) Create a new component for your new collection item form
-- [ ] Mutate data with the `useMutation` hook to create a new collection item via the API 
+- [x] (Optional) Create a new component for your new collection item form
+- [x] Mutate data with the `useMutation` hook to create a new collection item via the API 
 
 ### 8. Delete Data
-- [ ] Mutate data with the `useMutation` hook to delete an exisiting collection item via the API (you may want to add this to your collection display component)
+- [x] Mutate data with the `useMutation` hook to delete an exisiting collection item via the API (you may want to add this to your collection display component)
 
 ### 9. Update Data
 - [ ] (Optional) Create a new component for your update collection item form

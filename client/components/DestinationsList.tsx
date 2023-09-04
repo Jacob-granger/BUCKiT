@@ -40,7 +40,7 @@ export default function DestinationsList() {
               <DestinationItem
                 key={dest.id}
                 location={dest.location}
-                duration={dest.duration_days}
+                duration_days={dest.duration_days}
                 id={dest.id}
               />
             )

@@ -22,3 +22,9 @@ export async function deleteDestination(id: number) {
   await request.del(`${apiUrl}/${id}`)
   // return response.body
 }
+
+// Update /api/v1/destinations
+export async function updateDest(updatedDest: Destination) {
+  const response = await request.put(apiUrl).send(updatedDest)
+  return response.body
+}

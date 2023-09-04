@@ -8,7 +8,7 @@ function App() {
       <ChakraProvider>
         <Center mb={50}>
           <header className="header">
-            <h1>My Collection</h1>
+            <h1>Bucket List</h1>
           </header>
         </Center>
 
