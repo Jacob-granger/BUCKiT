@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { addDestination } from '../apis/destinations'
-import { DestinationData } from '../../models/destinations'
+import { Destination, DestinationData } from '../../models/destinations'
 import { useState } from 'react'
 import { Box, Button, FormControl, FormLabel, Input } from '@chakra-ui/react'
 
@@ -14,8 +14,17 @@ export default function DestinationForm() {
   const queryClient = useQueryClient()
 
   const destMutation = useMutation(addDestination, {
-    onSuccess: async () => {
-      queryClient.invalidateQueries(['destinations'])
+    onSuccess: async (newDest) => {
+      const currDestinations: Destination[] | undefined =
+        queryClient.getQueryData(['destinations'])
+      if (currDestinations) {
+        queryClient.setQueryData(
+          ['destinations'],
+          [...currDestinations, newDest]
+        )
+      } else {
+        queryClient.invalidateQueries(['destinations'])
+      }
     },
   })
 
