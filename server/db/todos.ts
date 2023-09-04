@@ -1,8 +1,23 @@
 import { Task, Todo } from '../../models/destinations.ts'
 import db from './connection.ts'
 
+// export async function getAllTodos(id: number): Promise<Todo[]> {
+//   const todos = await db('todos').where('id', id).select('*')
+//   return todos
+// }
+
 export async function getAllTodos(id: number): Promise<Todo[]> {
-  const todos = await db('todos').where('id', id).select('*')
+  const todos = await db('todos')
+    .where('destinations.id', id)
+    .select(
+      'todos.todo_id',
+      'todos.id',
+      'todos.todo',
+      'todos.complete',
+      'destinations.location'
+    )
+    .rightJoin('destinations', 'todos.id', 'destinations.id')
+  console.log(todos)
   return todos
 }
 

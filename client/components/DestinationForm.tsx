@@ -82,7 +82,15 @@ export default function DestinationForm() {
                 value={form.duration_days}
               />
             </FormControl>
-            <Button mt={30} bg="green" color="white" type="submit">
+            <Button
+              mt={30}
+              bg="green"
+              _hover={{
+                backgroundColor: 'green.600',
+              }}
+              color="white"
+              type="submit"
+            >
               Add
             </Button>
           </Flex>

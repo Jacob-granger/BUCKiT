@@ -8,6 +8,7 @@ import {
   Flex,
   FormControl,
   FormLabel,
+  Heading,
   Input,
   Text,
   VStack,
@@ -74,9 +75,14 @@ export default function Trip() {
     }
     updateTaskMutation.mutate(update)
   }
+
+  console.log(todos)
   return (
     <>
-      <VStack>
+      <VStack spacing="50px">
+        <Heading as="h2" size="xl">
+          {todos[0].location}
+        </Heading>
         <form onSubmit={handleAdd} aria-label="Add Todo Form">
           {addTaskMutation.isError && (
             <h3>Whoops something went wrong while adding a new task</h3>
@@ -92,32 +98,61 @@ export default function Trip() {
                 value={task.todo}
               />
             </FormControl>
-            <Button mt="32px" bg="green" color="white" type="submit">
+            <Button
+              mt="32px"
+              bg="green"
+              color="white"
+              type="submit"
+              _hover={{
+                backgroundColor: 'green.600',
+              }}
+            >
               Add
             </Button>
           </Flex>
         </form>
-        {todos.length === 0 ? (
-          <h2>You havent added any todos yet!</h2>
+        {todos.length === 1 && todos[0].id === null ? (
+          <>
+            <Heading as="h3" size="md">
+              You havent added any todos yet!
+            </Heading>
+          </>
         ) : (
-          <h2>Todo:</h2>
+          <>
+            <Heading as="h3" size="md">
+              Checklist:
+            </Heading>
+            <Center mt="10px">
+              <VStack alignItems="flex-start">
+                {todos.map((task) => {
+                  return (
+                    <Checkbox
+                      mb="20px"
+                      key={task.todo_id}
+                      isChecked={task.complete}
+                      onChange={() => handleCheck(task.todo_id, task.complete)}
+                    >
+                      <Text>{task.todo}</Text>
+                    </Checkbox>
+                  )
+                })}
+                <Button
+                  mt="80px"
+                  as="a"
+                  href="/"
+                  bg="#0147AB"
+                  color="white"
+                  _hover={{
+                    backgroundColor: 'blue.600',
+                  }}
+                >
+                  Back
+                </Button>
+              </VStack>
+            </Center>
+          </>
         )}
       </VStack>
-      <Center mt="100px">
-        <VStack alignItems="flex-start">
-          {todos.map((task) => {
-            return (
-              <Checkbox
-                key={task.todo_id}
-                isChecked={task.complete}
-                onChange={() => handleCheck(task.todo_id, task.complete)}
-              >
-                <Text>{task.todo}</Text>
-              </Checkbox>
-            )
-          })}
-        </VStack>
-      </Center>
     </>
   )
 }

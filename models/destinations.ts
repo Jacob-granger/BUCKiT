@@ -10,6 +10,7 @@ export interface DestinationData {
 }
 
 export interface Todo {
+  location: string
   todo_id: number
   id: number
   todo: string
