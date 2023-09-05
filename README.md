@@ -75,8 +75,8 @@ Our first job is getting something showing on the front end from our database. H
 - [x] Mutate data with the `useMutation` hook to delete an exisiting collection item via the API (you may want to add this to your collection display component)
 
 ### 9. Update Data
-- [ ] (Optional) Create a new component for your update collection item form
-- [ ] Mutate data with the `useMutation` hook to update an exisiting collection item via the API 
+- [x] (Optional) Create a new component for your update collection item form
+- [x] Mutate data with the `useMutation` hook to update an exisiting collection item via the API 
 
 ---
 
