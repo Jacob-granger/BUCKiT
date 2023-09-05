@@ -64,7 +64,7 @@ describe('Adding destinations', () => {
 
     const form = screen.getByRole('form')
     const locationField = within(form).getByLabelText('Destination:')
-    const durationField = within(form).getByLabelText('Duration:')
+    const durationField = within(form).getByLabelText('Duration (days):')
     const submit = within(form).getByRole('button')
 
     const addDestination = nock('http://localhost')
@@ -120,7 +120,7 @@ describe('Adding destinations', () => {
 
     const form = screen.getByRole('form')
     const locationField = within(form).getByLabelText('Destination:')
-    const durationField = within(form).getByLabelText('Duration:')
+    const durationField = within(form).getByLabelText('Duration (days):')
     const submit = within(form).getByRole('button')
 
     const addDestination = nock('http://localhost')
@@ -136,12 +136,12 @@ describe('Adding destinations', () => {
 
     await waitFor(() => {
       expect(
-        screen.queryByText(/Adding your new destination/)
+        screen.queryByText('Adding your new destination')
       ).not.toBeInTheDocument()
     })
 
     const errorMessage = screen.getByText(
-      'Whoops Something went wrong while adding a new destination to you bucket list'
+      'Whoops something went wrong while adding a new destination'
     )
 
     expect(errorMessage).toBeVisible()

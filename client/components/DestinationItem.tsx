@@ -74,6 +74,7 @@ export default function DestinationItem(props: Props) {
             </Text> */}
             <HStack justifyContent="space-between" width="100%">
               <Button
+                size="sm"
                 as="a"
                 href={`/trip/${props.id}`}
                 fontSize={10}
@@ -81,10 +82,11 @@ export default function DestinationItem(props: Props) {
               >
                 Plan trip
               </Button>
-              <Button onClick={handleEdit} fontSize={10} width="25%">
+              <Button size="sm" onClick={handleEdit} fontSize={10} width="25%">
                 Edit
               </Button>
               <Button
+                size="sm"
                 onClick={() => handleDelete(props.id)}
                 fontSize={10}
                 width="25%"

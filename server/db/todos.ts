@@ -32,3 +32,8 @@ export async function updateTodo(update: Task) {
     .where('todo_id', update.id)
     .update('complete', update.complete)
 }
+
+export async function deleteTodo(id: number) {
+  const result = await db('todos').where('todo_id', id).del()
+  return result
+}

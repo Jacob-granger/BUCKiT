@@ -19,3 +19,9 @@ export async function updateTask(update: Task) {
   const response = await request.put(`${apiUrl}`).send(update)
   return response.body
 }
+
+// Delete /api/v1/todos:id
+export async function deleteTask(id: number) {
+  await request.del(`${apiUrl}/${id}`)
+  // return response.body
+}

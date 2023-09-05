@@ -56,10 +56,9 @@ export default function DestinationForm() {
       <Box p={4} maxWidth="400px" mx="auto">
         <form onSubmit={handleSubmit} aria-label="Add Destination Form">
           {destMutation.isError && (
-            <h3>
-              Whoops something went wrong while adding a new destination to you
-              bucket list
-            </h3>
+            <div>
+              Whoops something went wrong while adding a new destination
+            </div>
           )}
           <Flex>
             <FormControl mr={4}>

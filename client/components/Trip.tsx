@@ -1,6 +1,11 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { useParams } from 'react-router-dom'
-import { addANewTask, fetchTodos, updateTask } from '../apis/todosApi'
+import {
+  addANewTask,
+  deleteTask,
+  fetchTodos,
+  updateTask,
+} from '../apis/todosApi'
 import {
   Button,
   Center,
@@ -8,12 +13,14 @@ import {
   Flex,
   FormControl,
   FormLabel,
+  HStack,
   Heading,
   Input,
   Text,
   VStack,
 } from '@chakra-ui/react'
 import { useState } from 'react'
+import { setMaxListeners } from 'superagent'
 
 export default function Trip() {
   const { id: tripId } = useParams()
@@ -45,17 +52,12 @@ export default function Trip() {
     },
   })
 
-  if (isError) {
-    return <div>Whoops there was an error trying to load your todos</div>
-  }
+  const deleteTaskMutation = useMutation(deleteTask, {
+    onSuccess: async () => {
+      queryClient.invalidateQueries(['todos'])
+    },
+  })
 
-  if (!todos || isLoading) {
-    return (
-      <Center>
-        <div>Loading todos</div>
-      </Center>
-    )
-  }
   function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
     const { name, value } = event.target
     const newTask = { ...task, [name]: value }
@@ -76,11 +78,27 @@ export default function Trip() {
     updateTaskMutation.mutate(update)
   }
 
+  function handleDel(id: number) {
+    deleteTaskMutation.mutate(id)
+  }
+
+  if (isError) {
+    return <div>Whoops there was an error trying to load your todos</div>
+  }
+
+  if (!todos || isLoading) {
+    return (
+      <Center>
+        <div>Loading todos</div>
+      </Center>
+    )
+  }
+
   console.log(todos)
   return (
     <>
       <VStack spacing="50px">
-        <Heading as="h2" size="xl">
+        <Heading as="h2" size="lg">
           {todos[0].location}
         </Heading>
         <form onSubmit={handleAdd} aria-label="Add Todo Form">
@@ -116,6 +134,18 @@ export default function Trip() {
             <Heading as="h3" size="md">
               You havent added any todos yet!
             </Heading>
+            <Button
+              mt="80px"
+              as="a"
+              href="/"
+              bg="#0147AB"
+              color="white"
+              _hover={{
+                backgroundColor: 'blue.600',
+              }}
+            >
+              Back
+            </Button>
           </>
         ) : (
           <>
@@ -126,14 +156,31 @@ export default function Trip() {
               <VStack alignItems="flex-start">
                 {todos.map((task) => {
                   return (
-                    <Checkbox
-                      mb="20px"
-                      key={task.todo_id}
-                      isChecked={task.complete}
-                      onChange={() => handleCheck(task.todo_id, task.complete)}
-                    >
-                      <Text>{task.todo}</Text>
-                    </Checkbox>
+                    <Flex key={task.todo_id}>
+                      <Checkbox
+                        mb="20px"
+                        mr="10px"
+                        key={task.todo_id}
+                        isChecked={task.complete}
+                        onChange={() =>
+                          handleCheck(task.todo_id, task.complete)
+                        }
+                      >
+                        <Text>{task.todo}</Text>
+                      </Checkbox>
+                      <Button
+                        _hover={{
+                          backgroundColor: 'red.400',
+                        }}
+                        onClick={() => handleDel(task.todo_id)}
+                        size="xs"
+                        bg="#cd2026"
+                        color="white"
+                        fontSize="1em"
+                      >
+                        <strong>x</strong>
+                      </Button>
+                    </Flex>
                   )
                 })}
                 <Button
