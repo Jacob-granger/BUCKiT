@@ -9,7 +9,7 @@ function App() {
         <Center mb={50}>
           <header className="header">
             <Heading as="h1" size="xl" mt="4rem">
-              EASY BUCKET
+              BUCKiT
             </Heading>
           </header>
         </Center>
