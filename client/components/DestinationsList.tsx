@@ -26,11 +26,11 @@ export default function DestinationsList() {
 
   return (
     <>
-      <Center mb={10}>
+      {/* <Center mb={10}>
         <Heading as="h2" size="md">
-          Here&apos;s your list of destinations to travel to
+          Countries:
         </Heading>
-      </Center>
+      </Center> */}
 
       <Center>
         <VStack spacing={4} width="30%">

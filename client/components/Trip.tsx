@@ -107,7 +107,7 @@ export default function Trip() {
           )}
           <Flex alignItems="center">
             <FormControl mr={4}>
-              <FormLabel htmlFor="todo">New task</FormLabel>
+              <FormLabel htmlFor="todo">New item:</FormLabel>
               <Input
                 type="text"
                 id="todo"

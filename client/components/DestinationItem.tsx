@@ -63,7 +63,7 @@ export default function DestinationItem(props: Props) {
 
   return !edit ? (
     <>
-      <Card bg="#0147AB" width="50%">
+      <Card bg="#b34e24" width="50%">
         <CardBody>
           <VStack spacing="20px">
             <Heading as="h3" size="md" color="white">
@@ -100,7 +100,7 @@ export default function DestinationItem(props: Props) {
     </>
   ) : (
     <>
-      <Card bg="#0147AB" width="50%">
+      <Card bg="#b34e24" width="50%">
         <CardBody>
           <VStack spacing="20px">
             <form onSubmit={handleSave} aria-label="Edit destination form">

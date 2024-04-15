@@ -8,8 +8,8 @@ function App() {
       <ChakraProvider>
         <Center mb={50}>
           <header className="header">
-            <Heading as="h1" size="xl">
-              Bucket List
+            <Heading as="h1" size="xl" mt="4rem">
+              EASY BUCKET
             </Heading>
           </header>
         </Center>
