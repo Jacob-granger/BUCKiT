@@ -1,4 +1,4 @@
 Cloning and installation
 
-- [x] Clone this repo, navigate to it, install packages, and start the server with `npm run dev`
+-Clone this repo, navigate to it, install packages, and start the server with `npm run dev`
 
