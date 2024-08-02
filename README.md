@@ -1,4 +1,7 @@
-Cloning and installation
-
--Clone this repo, navigate to it, install packages, and start the server with `npm run dev`
+##Setup
+--
+1. Clone this repository
+2. Install dependencies: npm i
+3. Run migrations & seeds: npm run knex migrate:latest; npm run knex migrate seed:run
+4. Start server: npm run dev
 
